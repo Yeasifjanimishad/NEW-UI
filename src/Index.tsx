@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { HeroSection } from './components/HeroSection.tsx';
 import { AboutSection } from './components/AboutSection.tsx';
 import { FeaturedVideoSection } from './components/FeaturedVideoSection.tsx';
+import { SectionDivider } from './components/SectionDivider.tsx';
 import { PhilosophySection } from './components/PhilosophySection.tsx';
 import { ServicesSection } from './components/ServicesSection.tsx';
 import { Footer } from './components/Footer.tsx';
@@ -50,6 +51,9 @@ export default function Index() {
 
       {/* SECTION 3 -- FEATURED VIDEO */}
       <FeaturedVideoSection onExploreMore={handleExploreMore} />
+
+      {/* DIVIDER BETWEEN FEATURED VIDEO & PHILOSOPHY */}
+      <SectionDivider />
 
       {/* SECTION 4 -- PHILOSOPHY / INNOVATION x VISION */}
       <PhilosophySection />
