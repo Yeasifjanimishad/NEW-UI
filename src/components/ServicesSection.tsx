@@ -28,6 +28,53 @@ const services: ServiceItem[] = [
   },
 ];
 
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 50,
+    scale: 1,
+    backdropFilter: 'blur(4px)',
+    WebkitBackdropFilter: 'blur(4px)',
+    boxShadow: '0 0 0 rgba(255, 255, 255, 0)',
+  },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    backdropFilter: 'blur(4px)',
+    WebkitBackdropFilter: 'blur(4px)',
+    boxShadow: '0 0 0 rgba(255, 255, 255, 0)',
+    transition: {
+      duration: 0.8,
+      delay: i * 0.15,
+      ease: [0.16, 1, 0.3, 1] as const,
+    },
+  }),
+  hover: {
+    scale: 1.025,
+    backdropFilter: 'blur(18px)',
+    WebkitBackdropFilter: 'blur(18px)',
+    boxShadow:
+      '0 0 40px -5px rgba(255, 255, 255, 0.22), inset 0 1px 2px rgba(255, 255, 255, 0.35)',
+    transition: {
+      duration: 0.4,
+      ease: [0.16, 1, 0.3, 1] as const,
+    },
+  },
+};
+
+const glowingBorderVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 0 },
+  hover: {
+    opacity: 1,
+    transition: {
+      duration: 0.4,
+      ease: [0.16, 1, 0.3, 1] as const,
+    },
+  },
+};
+
 export const ServicesSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
@@ -49,7 +96,7 @@ export const ServicesSection: React.FC = () => {
           className="flex items-end justify-between mb-12 md:mb-16"
         >
           <h2 className="text-3xl md:text-5xl text-white tracking-tight font-normal">
-            What we do !
+            What we do
           </h2>
           <span className="text-white/40 text-sm tracking-wider uppercase hidden md:inline-block">
             Our services
@@ -61,15 +108,19 @@ export const ServicesSection: React.FC = () => {
           {services.map((item, index) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{
-                duration: 0.8,
-                delay: index * 0.15,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="liquid-glass rounded-3xl overflow-hidden group cursor-pointer border border-white/5"
+              custom={index}
+              initial="hidden"
+              animate={isInView ? 'visible' : 'hidden'}
+              whileHover="hover"
+              variants={cardVariants}
+              className="liquid-glass rounded-3xl overflow-hidden group cursor-pointer relative"
             >
+              {/* Subtle glowing border overlay animated on hover */}
+              <motion.div
+                variants={glowingBorderVariants}
+                className="absolute inset-0 rounded-3xl pointer-events-none ring-1 ring-white/50 shadow-[0_0_35px_rgba(255,255,255,0.25)] z-20"
+              />
+
               {/* Card video area: aspect-video, object-cover, transition-transform duration-700 group-hover:scale-105 */}
               <div className="aspect-video relative overflow-hidden bg-black/40">
                 <video
@@ -85,7 +136,7 @@ export const ServicesSection: React.FC = () => {
               </div>
 
               {/* Card body (p-6 md:p-8) */}
-              <div className="p-6 md:p-8 flex flex-col justify-between">
+              <div className="p-6 md:p-8 flex flex-col justify-between relative z-10">
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-white/40 text-xs tracking-widest uppercase font-medium">
                     {item.tag}
