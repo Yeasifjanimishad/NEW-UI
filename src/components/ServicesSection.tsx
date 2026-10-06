@@ -49,7 +49,7 @@ export const ServicesSection: React.FC = () => {
           className="flex items-end justify-between mb-12 md:mb-16"
         >
           <h2 className="text-3xl md:text-5xl text-white tracking-tight font-normal">
-            What we do
+            What we do !
           </h2>
           <span className="text-white/40 text-sm tracking-wider uppercase hidden md:inline-block">
             Our services
