@@ -1,0 +1,6 @@
+{
+  "name": "Asme — Know it then all",
+  "description": "Pioneering ideas for minds that create, build, and inspire. Discover innovation at the crossroads of disciplined strategy and remarkable creative vision.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
