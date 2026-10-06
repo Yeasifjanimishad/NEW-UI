@@ -51,13 +51,13 @@ const cardVariants = {
     },
   }),
   hover: {
-    scale: 1.025,
-    backdropFilter: 'blur(18px)',
-    WebkitBackdropFilter: 'blur(18px)',
+    scale: 1.02,
+    backdropFilter: 'blur(8px)',
+    WebkitBackdropFilter: 'blur(8px)',
     boxShadow:
-      '0 0 40px -5px rgba(255, 255, 255, 0.22), inset 0 1px 2px rgba(255, 255, 255, 0.35)',
+      '0 0 35px -5px rgba(255, 255, 255, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.35)',
     transition: {
-      duration: 0.4,
+      duration: 0.35,
       ease: [0.16, 1, 0.3, 1] as const,
     },
   },
